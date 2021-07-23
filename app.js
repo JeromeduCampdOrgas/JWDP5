@@ -5,7 +5,17 @@ const cameraRoutes = require('./routes/camera');
 const teddyRoutes = require('./routes/teddy');
 const furnitureRoutes = require('./routes/furniture');
 
+const mongoose = require('mongoose');
+
 const app = express();
+
+mongoose.connect('mongodb+srv://ducampdorgas:<password>@orinoco.d581w.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => console.log('Connexion à MongoDB réussie !'))
+  .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -17,7 +27,7 @@ app.use((req, res, next) => {
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use(express.static('images'));
 
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use('/api/cameras', cameraRoutes);
@@ -25,3 +35,4 @@ app.use('/api/teddies', teddyRoutes);
 app.use('/api/furniture', furnitureRoutes);
 
 module.exports = app;
+//mongodb+srv://ducampdorgas:<password>@orinoco.d581w.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
