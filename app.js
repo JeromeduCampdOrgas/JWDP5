@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const dotenv = require('dotenv').config();
+require('dotenv').config();
 const cameraRoutes = require('./routes/camera');
 const teddyRoutes = require('./routes/teddy');
 const furnitureRoutes = require('./routes/furniture');
