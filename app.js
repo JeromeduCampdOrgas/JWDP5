@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-
+const dotenv = require('dotenv').config();
 const cameraRoutes = require('./routes/camera');
 const teddyRoutes = require('./routes/teddy');
 const furnitureRoutes = require('./routes/furniture');
@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://ducampdorgas:PeriLsf37@orinoco.d581w.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://' + process.env.DB_USER + ':' + process.env.DB_PASS + '@' + process.env.DB_URI + '/' + process.env.DB_NAME + '?retryWrites=true&w=majority',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true
